@@ -1,10 +1,29 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace FE8PromotionRandomizer
 {
+    [Flags]
+    public enum Ability2 : byte
+    {
+        Promoted = 1,
+        Lord = 32
+    }
+
+    [Flags]
+    public enum Ability4 : byte
+    {
+        Summoning = 8
+    }
+
     [StructLayout(LayoutKind.Explicit, Size = 0x54)]
     public struct CharacterClass
     {
+        [FieldOffset(41)]
+        public Ability2 ability2;
+        [FieldOffset(43)]
+        public Ability4 ability4;
+
         [FieldOffset(44)]
         public byte swords;
         [FieldOffset(45)]
@@ -21,6 +40,11 @@ namespace FE8PromotionRandomizer
         public byte light;
         [FieldOffset(51)]
         public byte dark;
+
+        [FieldOffset(56)]
+        public int movementCost;
+
+        public bool Flyer => movementCost == 0x880BB96;
 
         public int TomeExp => anima + light + dark;
 
