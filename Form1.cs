@@ -150,11 +150,11 @@ namespace FE8PromotionRandomizer
 
                     var unusedPromos = validPromos.Except(newPromos);
 
-                    Console.Write(ClassNames.Names[lowerTierId]);
+                    Console.Write((ClassId)lowerTierId);
 
                     Console.Write(": ");
 
-                    Console.Write(string.Join(" / ", newPromos.Select(x => ClassNames.Names[x])));
+                    Console.Write(string.Join(" / ", newPromos.Select(x => (ClassId)x)));
 
                     if (oldPromos.SetEquals(newPromos))
                         Console.Write(" (same)");
