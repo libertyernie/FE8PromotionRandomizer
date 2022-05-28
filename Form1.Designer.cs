@@ -47,6 +47,7 @@ namespace FE8PromotionRandomizer
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.chkMonsters = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -240,11 +241,25 @@ namespace FE8PromotionRandomizer
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // chkMonsters
+            // 
+            this.chkMonsters.AutoSize = true;
+            this.chkMonsters.Checked = true;
+            this.chkMonsters.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMonsters.Location = new System.Drawing.Point(15, 228);
+            this.chkMonsters.Name = "chkMonsters";
+            this.chkMonsters.Size = new System.Drawing.Size(545, 17);
+            this.chkMonsters.TabIndex = 19;
+            this.chkMonsters.Text = "Include monster classes as valid promotion options (most treated as gender-neutra" +
+    "l, axe-wielders M, gorgons F)";
+            this.chkMonsters.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 361);
+            this.Controls.Add(this.chkMonsters);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox2);
@@ -290,5 +305,6 @@ namespace FE8PromotionRandomizer
         private TextBox textBox2;
         private Label label4;
         private Button button3;
+        private CheckBox chkMonsters;
     }
 }

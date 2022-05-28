@@ -33,7 +33,9 @@ namespace FE8PromotionRandomizer
 
             byte[] data = File.ReadAllBytes(textBox1.Text);
 
-            var human_classes = ClassIdExtensions.Used.ToList();
+            var human_classes = ClassIdExtensions.Used
+                .Except(chkMonsters.Checked ? new ClassId[0] : ClassIdExtensions.Monsters)
+                .ToList();
 
             CharacterClass extractClassInformation(ClassId id)
             {
@@ -59,6 +61,8 @@ namespace FE8PromotionRandomizer
                 .ToHashSet();
 
             var rand = new Random();
+
+            using var sw = new StringWriter();
 
             fixed (byte* ptr = data)
             {
@@ -113,16 +117,16 @@ namespace FE8PromotionRandomizer
 
                     var unusedPromos = validPromos.Except(newPromos);
 
-                    Console.Write(lowerTierId);
+                    sw.Write(lowerTierId);
 
-                    Console.Write(": ");
+                    sw.Write(": ");
 
-                    Console.Write(string.Join(" / ", newPromos.Select(x => x)));
+                    sw.Write(string.Join(" / ", newPromos.Select(x => x)));
 
                     if (oldPromos.SetEquals(newPromos))
-                        Console.Write(" (same)");
+                        sw.Write(" (same)");
 
-                    Console.WriteLine();
+                    sw.WriteLine();
 
                     promotions[0] = (byte)newPromos[0];
                     promotions[1] = (byte)newPromos[1];
@@ -132,7 +136,11 @@ namespace FE8PromotionRandomizer
                 }
             }
 
+            Console.WriteLine(sw);
+
             File.WriteAllBytes(textBox2.Text, data);
+
+            MessageBox.Show(this, sw.ToString());
 
             (sender as Control)!.Enabled = true;
         }
