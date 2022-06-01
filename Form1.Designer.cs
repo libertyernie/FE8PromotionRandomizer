@@ -194,10 +194,9 @@ namespace FE8PromotionRandomizer
             this.chkIncludeSummoner.AutoSize = true;
             this.chkIncludeSummoner.Location = new System.Drawing.Point(15, 205);
             this.chkIncludeSummoner.Name = "chkIncludeSummoner";
-            this.chkIncludeSummoner.Size = new System.Drawing.Size(518, 17);
+            this.chkIncludeSummoner.Size = new System.Drawing.Size(417, 17);
             this.chkIncludeSummoner.TabIndex = 14;
-            this.chkIncludeSummoner.Text = "Include the Summoner class (The \"summon\" skill doesn\'t seem to work on Moulder an" +
-    "d I\'m not sure why)";
+            this.chkIncludeSummoner.Text = "Allow the Summoner class on units besides Knoll and Ewan (may not work properly)";
             this.chkIncludeSummoner.UseVisualStyleBackColor = true;
             // 
             // button2

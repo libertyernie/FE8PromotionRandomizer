@@ -16,9 +16,6 @@ namespace FE8PromotionRandomizer
         public static readonly IReadOnlyList<ClassId> Avoid = new[]
         {
             ClassId.UNUSED_MANAKETE,
-            ClassId.UNUSED_MERCENARY_F,
-            ClassId.UNUSED_WYVERN_RIDER_F,
-            ClassId.UNUSED_SHAMAN_F,
             ClassId.GORGON_EGG_34,
             ClassId.MANAKETE_MORVA_M,
             ClassId.UNUSED_BARD_M,

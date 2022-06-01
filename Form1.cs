@@ -86,7 +86,7 @@ namespace FE8PromotionRandomizer
                     if (oldPromos.Any(x => x == 0))
                         continue;
 
-                    var validPromos = new HashSet<ClassId>();
+                    var validPromos = new HashSet<ClassId>(oldPromos);
                     foreach (ClassId higherTierId in promoted)
                     {
                         if (male.Contains(higherTierId) || female.Contains(higherTierId))
