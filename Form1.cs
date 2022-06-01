@@ -33,9 +33,7 @@ namespace FE8PromotionRandomizer
 
             byte[] data = File.ReadAllBytes(textBox1.Text);
 
-            var human_classes = ClassIdExtensions.Used
-                .Except(chkMonsters.Checked ? new ClassId[0] : ClassIdExtensions.Monsters)
-                .ToList();
+            var human_classes = ClassIdExtensions.Available;
 
             CharacterClass extractClassInformation(ClassId id)
             {
@@ -100,6 +98,8 @@ namespace FE8PromotionRandomizer
                         if (!higherTierPtr->IsValidPromotionFor(*lowerTierPtr, allowLoseRank: chkAllowLoseRank.Checked, magicLock: !chkNoMagicLock.Checked)) continue;
 
                         if (chkflyerExclusivity.Checked && !flyers.Contains(lowerTierId) && flyers.Contains(higherTierId)) continue;
+
+                        if (!chkNoPromoGains.Checked && !higherTierPtr->promotionGains.Any()) continue;
 
                         validPromos.Add(higherTierId);
                     }

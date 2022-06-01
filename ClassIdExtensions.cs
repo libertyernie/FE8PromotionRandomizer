@@ -6,22 +6,22 @@ namespace FE8PromotionRandomizer
 {
     public static class ClassIdExtensions
     {
-        public static readonly IReadOnlyList<ClassId> Unused = new[]
+        public static readonly IReadOnlyList<ClassId> Tier0 = new[]
+        {
+            ClassId.JOURNEYMAN_1_M,
+            ClassId.PUPIL_1_M,
+            ClassId.RECRUIT_1_F,
+        };
+
+        public static readonly IReadOnlyList<ClassId> Avoid = new[]
         {
             ClassId.UNUSED_MANAKETE,
             ClassId.UNUSED_MERCENARY_F,
-            ClassId.UNUSED_HERO_F,
             ClassId.UNUSED_WYVERN_RIDER_F,
-            ClassId.UNUSED_WYVERN_LORD_F,
             ClassId.UNUSED_SHAMAN_F,
-            ClassId.UNUSED_DRUID_F,
-            ClassId.UNUSED_SUMMONER_F,
             ClassId.GORGON_EGG_34,
             ClassId.MANAKETE_MORVA_M,
-            ClassId.JOURNEYMAN_1_M,
-            ClassId.PUPIL_1_M,
             ClassId.UNUSED_BARD_M,
-            ClassId.RECRUIT_1_F,
             ClassId.NECROMANCER_M,
             ClassId.FLEET,
             ClassId.PHANTOM,
@@ -53,13 +53,25 @@ namespace FE8PromotionRandomizer
             ClassId.ELDER_BAEL_7D
         };
 
-        public static IEnumerable<ClassId> Used
+        public static readonly IReadOnlyList<ClassId> CharacterSpecific = new[]
+        {
+            ClassId.LORD_M,
+            ClassId.LORD_F,
+            ClassId.GREAT_LORD_M,
+            ClassId.GREAT_LORD_F,
+            ClassId.MANAKETE_MYRRH_F
+        };
+
+        public static IEnumerable<ClassId> Available
         {
             get
             {
                 foreach (ClassId val in Enum.GetValues(typeof(ClassId)))
                 {
-                    if (!Unused.Contains(val)) yield return val;
+                    if (Tier0.Contains(val)) continue;
+                    if (Avoid.Contains(val)) continue;
+                    if (CharacterSpecific.Contains(val)) continue;
+                    yield return val;
                 }
             }
         }

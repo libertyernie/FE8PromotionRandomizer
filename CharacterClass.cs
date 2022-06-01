@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace FE8PromotionRandomizer
@@ -16,9 +17,20 @@ namespace FE8PromotionRandomizer
         Summoning = 8
     }
 
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 0x6)]
+    public struct PromotionGains
+    {
+        public byte hp, pow, skl, spd, def, res;
+
+        public bool Any() => new[] { hp, pow, skl, spd, def, res }.Any(x => x != 0);
+    }
+
     [StructLayout(LayoutKind.Explicit, Size = 0x54)]
     public struct CharacterClass
     {
+        [FieldOffset(34)]
+        public PromotionGains promotionGains;
+
         [FieldOffset(41)]
         public Ability2 ability2;
         [FieldOffset(43)]
