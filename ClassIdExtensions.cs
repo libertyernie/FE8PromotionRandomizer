@@ -95,7 +95,7 @@ namespace FE8PromotionRandomizer
             }
         }
 
-        public static IEnumerable<ClassId> NotGenderLocked
+        public static IEnumerable<(ClassId, ClassId)> Pairs
         {
             get
             {
@@ -105,10 +105,21 @@ namespace FE8PromotionRandomizer
                     {
                         if ($"{f}".Replace("_F", "") == $"{m}".Replace("_M", ""))
                         {
-                            yield return f;
-                            yield return m;
+                            yield return (f, m);
                         }
                     }
+                }
+            }
+        }
+
+        public static IEnumerable<ClassId> NotGenderLocked
+        {
+            get
+            {
+                foreach (var (a, b) in Pairs)
+                {
+                    yield return a;
+                    yield return b;
                 }
             }
         }
